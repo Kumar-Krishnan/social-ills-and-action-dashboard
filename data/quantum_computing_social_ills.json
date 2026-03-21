@@ -1,0 +1,167 @@
+{
+  "title": "Top 20 Social Ills from Advances in Quantum Computing",
+  "date_generated": "2026-03-18",
+  "items": [
+    {
+      "rank": 1,
+      "name": "Cryptographic collapse — the Q-Day problem",
+      "description": "A sufficiently powerful fault-tolerant quantum computer breaks RSA, ECC, and most public-key cryptography securing banking, communications, government systems, and critical infrastructure. Mathematically certain once the hardware threshold is crossed.",
+      "status": "approaching",
+      "phase": "near_term_high_confidence",
+      "confidence": "high"
+    },
+    {
+      "rank": 2,
+      "name": "Harvest now, decrypt later attacks already underway",
+      "description": "Nation-state actors are already intercepting and storing encrypted communications with the intention of decrypting them once quantum capability arrives. Sensitive communications from today are future-compromised.",
+      "status": "present",
+      "phase": "near_term_high_confidence",
+      "confidence": "high"
+    },
+    {
+      "rank": 3,
+      "name": "Catastrophic exposure of historical secrets",
+      "description": "When quantum decryption arrives, decades of encrypted data become readable — intelligence sources, corporate secrets, medical records, attorney-client communications, journalistic sources — all retroactively exposed.",
+      "status": "approaching",
+      "phase": "near_term_high_confidence",
+      "confidence": "high"
+    },
+    {
+      "rank": 4,
+      "name": "Financial system vulnerability",
+      "description": "Global financial infrastructure relies on cryptographic protocols that quantum computing threatens. The transition to quantum-resistant cryptography in banking, trading, and payment systems is a massive coordination problem with systemic risk during the migration window.",
+      "status": "approaching",
+      "phase": "near_term_high_confidence",
+      "confidence": "high"
+    },
+    {
+      "rank": 5,
+      "name": "Asymmetric national advantage and geopolitical destabilization",
+      "description": "Whichever nation achieves quantum supremacy in cryptanalysis first gains an intelligence advantage that dwarfs anything in history. The resulting information asymmetry could trigger preemptive actions, arms races, or miscalculated escalations.",
+      "status": "approaching",
+      "phase": "near_term_high_confidence",
+      "confidence": "high"
+    },
+    {
+      "rank": 6,
+      "name": "Digital identity infrastructure collapse",
+      "description": "Digital signatures, certificate authorities, blockchain, and identity verification systems all depend on cryptographic assumptions quantum computing invalidates. The infrastructure of digital trust has an expiration date.",
+      "status": "approaching",
+      "phase": "near_term_high_confidence",
+      "confidence": "high"
+    },
+    {
+      "rank": 7,
+      "name": "Widening power asymmetry between states and citizens",
+      "description": "Quantum computing will be available to governments and large corporations long before individuals or civil society, creating a period where the powerful can break the encryption of the less powerful but not vice versa.",
+      "status": "approaching",
+      "phase": "near_term_high_confidence",
+      "confidence": "high"
+    },
+    {
+      "rank": 8,
+      "name": "Pharmaceutical and biotech acceleration without ethical infrastructure",
+      "description": "Quantum simulation of molecular interactions could dramatically accelerate drug discovery but also accelerate design of novel pathogens, toxins, or psychoactive compounds. The dual-use problem becomes more acute when the design cycle compresses from years to weeks.",
+      "status": "approaching",
+      "phase": "near_term_high_confidence",
+      "confidence": "medium"
+    },
+    {
+      "rank": 9,
+      "name": "Materials science disruption and resource competition",
+      "description": "Quantum-enabled materials discovery could reshape supply chains overnight. Identification of novel superconductors or battery chemistries could collapse entire national economies built on current resource extraction.",
+      "status": "emerging",
+      "phase": "medium_term_structurally_likely",
+      "confidence": "medium"
+    },
+    {
+      "rank": 10,
+      "name": "AI capability explosion via quantum-classical hybrid systems",
+      "description": "Quantum computing applied to machine learning optimization could produce AI capability jumps that outpace already-inadequate governance frameworks, amplifying and accelerating existing AI harms.",
+      "status": "emerging",
+      "phase": "medium_term_structurally_likely",
+      "confidence": "medium"
+    },
+    {
+      "rank": 11,
+      "name": "Concentration of quantum capability as ultimate moat",
+      "description": "Capital requirements, talent scarcity, and hardware complexity create a concentration of capability that makes Big Tech's current dominance look distributed. Perhaps 5-10 entities worldwide with meaningful quantum capability, operating with minimal oversight.",
+      "status": "emerging",
+      "phase": "medium_term_structurally_likely",
+      "confidence": "high"
+    },
+    {
+      "rank": 12,
+      "name": "Destruction of blockchain and cryptocurrency",
+      "description": "Quantum computing breaks the cryptographic assumptions underlying most blockchain architectures, creating existential vulnerability for Bitcoin, Ethereum, and the broader crypto ecosystem.",
+      "status": "emerging",
+      "phase": "medium_term_structurally_likely",
+      "confidence": "high"
+    },
+    {
+      "rank": 13,
+      "name": "Optimization of surveillance and social control",
+      "description": "Quantum computing's strength in optimization problems could dramatically improve efficiency of surveillance systems — optimizing camera placement, behavioral prediction models, and network analysis of dissident groups.",
+      "status": "emerging",
+      "phase": "medium_term_structurally_likely",
+      "confidence": "medium"
+    },
+    {
+      "rank": 14,
+      "name": "Military and intelligence dominance without accountability",
+      "description": "Quantum-enhanced signals intelligence, cryptanalysis, and optimization of military logistics and targeting creates capabilities that will be classified and deployed without democratic deliberation.",
+      "status": "emerging",
+      "phase": "medium_term_structurally_likely",
+      "confidence": "high"
+    },
+    {
+      "rank": 15,
+      "name": "Quantum-enabled financial manipulation",
+      "description": "Quantum computing's advantage in optimization could allow entities with access to front-run markets, optimize trading strategies, or identify arbitrage opportunities invisible to classical computers.",
+      "status": "emerging",
+      "phase": "medium_term_structurally_likely",
+      "confidence": "medium"
+    },
+    {
+      "rank": 16,
+      "name": "Epistemic stratification — a quantum knowledge class",
+      "description": "The number of people who can genuinely understand quantum computing's capabilities and limitations is tiny. Decisions affecting billions will be made by a technical priesthood whose work cannot be meaningfully evaluated by legislators, judges, or the public.",
+      "status": "emerging",
+      "phase": "longer_term_structurally_important",
+      "confidence": "high"
+    },
+    {
+      "rank": 17,
+      "name": "Quantum-enabled biological risk",
+      "description": "Combining quantum molecular simulation with AI-driven protein design creates the possibility of engineering biological agents with unprecedented precision, potentially accessible to smaller actors with quantum cloud access.",
+      "status": "future",
+      "phase": "longer_term_structurally_important",
+      "confidence": "medium"
+    },
+    {
+      "rank": 18,
+      "name": "Post-quantum transition chaos and legacy system failure",
+      "description": "Migration to post-quantum cryptography will be the largest infrastructure upgrade in computing history. Organizations that cannot afford or manage the transition will be left fundamentally insecure. The digital divide becomes a security divide.",
+      "status": "approaching",
+      "phase": "longer_term_structurally_important",
+      "confidence": "high"
+    },
+    {
+      "rank": 19,
+      "name": "Erosion of nuclear deterrence stability",
+      "description": "If quantum computing enables breaking encrypted military communications or significantly improving missile guidance and detection systems, it could undermine mutually assured destruction calculus. If one side believes it can achieve a decryption advantage, first-strike incentives increase.",
+      "status": "future",
+      "phase": "longer_term_structurally_important",
+      "confidence": "medium"
+    },
+    {
+      "rank": 20,
+      "name": "The quantum winter social cost",
+      "description": "If quantum computing fails to deliver on promises within investor timelines, the resulting collapse in funding could destroy legitimate research programs, waste public investment, and breed cynicism that delays adoption when the technology does mature.",
+      "status": "possible",
+      "phase": "longer_term_structurally_important",
+      "confidence": "medium"
+    }
+  ],
+  "structural_observation": "Quantum computing's primary social risks are asymmetric rather than distributed. Smartphones harmed everyone who used them. AI harms scale across populations. Quantum computing's deepest risks come from the fact that very few entities will have it and most will not — and the gap between those two groups is where the danger lives."
+}

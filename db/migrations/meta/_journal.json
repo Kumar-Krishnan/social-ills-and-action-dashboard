@@ -1,0 +1,55 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1773812092484,
+      "tag": "0000_serious_hedge_knight",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1773890693609,
+      "tag": "0001_unknown_doomsday",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1773891776140,
+      "tag": "0002_complete_captain_marvel",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1773968171059,
+      "tag": "0003_faithful_diamondback",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1773969235510,
+      "tag": "0004_real_dracula",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1773971771336,
+      "tag": "0005_icy_grim_reaper",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1774059801516,
+      "tag": "0006_mean_jackal",
+      "breakpoints": true
+    }
+  ]
+}
