@@ -94,6 +94,24 @@ export const LEGISLATION_DIRECTION_LABELS: Record<string, string> = {
   mixed: "Mixed Impact",
 };
 
+export const DIRECTNESS_LABELS: Record<string, string> = {
+  direct: "Direct",
+  contributing: "Contributing",
+  contextual: "Contextual",
+};
+
+export const DIRECTNESS_DESCRIPTIONS: Record<string, string> = {
+  direct: "A proximate cause — removing this factor would substantially reduce the downstream harm",
+  contributing: "A meaningful factor alongside others — this feeds the problem but isn't the sole driver",
+  contextual: "Creates conditions that make the harm more likely or worse, but the causal link is structural rather than proximate",
+};
+
+export const DIRECTNESS_COLORS: Record<string, string> = {
+  direct: "bg-red-100 text-red-800 dark:bg-red-900/30 dark:text-red-400",
+  contributing: "bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-400",
+  contextual: "bg-slate-100 text-slate-700 dark:bg-slate-800/50 dark:text-slate-400",
+};
+
 export const RELATIONSHIP_TYPE_LABELS: Record<string, string> = {
   causes: "Causes",
   amplifies: "Amplifies",

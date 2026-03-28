@@ -452,7 +452,7 @@ function seedDemo() {
     sourceName: string,
     targetName: string,
     type: string,
-    strength: number,
+    directness: "direct" | "contributing" | "contextual",
     direction: string,
     evidence: string
   ) {
@@ -463,34 +463,34 @@ function seedDemo() {
       return;
     }
     sqlite.prepare(
-      `INSERT INTO issue_relationships (source_issue_id, target_issue_id, relationship_type, strength, direction, evidence, source, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
-    ).run(sourceId, targetId, type, strength, direction, evidence, "seed", NOW);
-    console.log(`    ${sourceName} --[${type}]--> ${targetName}`);
+      `INSERT INTO issue_relationships (source_issue_id, target_issue_id, relationship_type, directness, direction, evidence, source, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+    ).run(sourceId, targetId, type, directness, direction, evidence, "seed", NOW);
+    console.log(`    ${sourceName} --[${type} / ${directness}]--> ${targetName}`);
   }
 
   // ── From: Algorithmic bias laundering ──
   addRelationship(
     "Algorithmic bias laundering",
     "Racial and socioeconomic health disparities",
-    "amplifies", 0.9, "one_way",
+    "amplifies", "direct", "one_way",
     "Biased healthcare algorithms (Optum, kidney function eGFR) directly deepen racial health disparities by under-allocating care to Black patients"
   );
   addRelationship(
     "Algorithmic bias laundering",
     "Automated surveillance and social control",
-    "amplifies", 0.8, "one_way",
+    "amplifies", "contributing", "one_way",
     "Facial recognition and predictive policing algorithms encode racial bias into surveillance infrastructure, disproportionately targeting communities of color"
   );
   addRelationship(
     "Concentration of power in fewer hands",
     "Algorithmic bias laundering",
-    "enables", 0.7, "one_way",
+    "enables", "contributing", "one_way",
     "When AI development is concentrated in a few corporations, bias in their systems becomes structural — there are no competitive alternatives trained on different data"
   );
   addRelationship(
     "Algorithmic bias laundering",
     "Hospital consolidation and local monopoly pricing",
-    "amplifies", 0.5, "one_way",
+    "amplifies", "contextual", "one_way",
     "Consolidated hospital systems deploy uniform algorithms across all facilities; biased algorithms in a monopoly system have no competitive check — patients cannot switch to a system with better algorithms"
   );
 
@@ -498,25 +498,25 @@ function seedDemo() {
   addRelationship(
     "Hospital consolidation and local monopoly pricing",
     "Rural healthcare collapse",
-    "amplifies", 0.85, "one_way",
+    "amplifies", "direct", "one_way",
     "When large systems acquire rural hospitals, they close unprofitable service lines and redirect complex cases to urban facilities, accelerating the loss of rural healthcare access"
   );
   addRelationship(
     "Hospital consolidation and local monopoly pricing",
     "Medical debt as the leading cause of personal bankruptcy",
-    "amplifies", 0.8, "one_way",
+    "amplifies", "contributing", "one_way",
     "Monopoly pricing power means patients pay 6-18% more for the same care; in consolidated markets, patients cannot comparison shop or negotiate"
   );
   addRelationship(
     "Destruction of healthcare through PE acquisition",
     "Hospital consolidation and local monopoly pricing",
-    "causes", 0.9, "one_way",
+    "causes", "direct", "one_way",
     "PE-driven hospital acquisitions are a primary mechanism of consolidation; the leveraged buyout model drives the financial pressure to acquire, consolidate, and extract"
   );
   addRelationship(
     "Private equity roll-ups creating stealth monopolies",
     "Hospital consolidation and local monopoly pricing",
-    "enables", 0.8, "one_way",
+    "enables", "direct", "one_way",
     "The PE roll-up strategy — acquiring hospitals below antitrust review thresholds — is how consolidation happens without regulatory intervention"
   );
 
@@ -524,25 +524,25 @@ function seedDemo() {
   addRelationship(
     "Destruction of local journalism via hedge fund acquisition",
     "Local news collapse and the creation of news deserts",
-    "causes", 0.95, "one_way",
+    "causes", "direct", "one_way",
     "Hedge fund acquisition is the single largest direct cause of local newspaper closures — Alden Global Capital alone has gutted dozens of newsrooms"
   );
   addRelationship(
     "Destruction of local journalism via hedge fund acquisition",
     "Collapse of shared information commons",
-    "amplifies", 0.7, "one_way",
+    "amplifies", "contributing", "one_way",
     "As local papers disappear, communities lose their shared factual baseline and default to national partisan media, deepening epistemic fragmentation"
   );
   addRelationship(
     "Leveraged buyout debt loading and productive asset stripping",
     "Destruction of local journalism via hedge fund acquisition",
-    "enables", 0.9, "one_way",
+    "enables", "direct", "one_way",
     "The hedge fund newspaper playbook IS the leveraged buyout playbook: acquire using debt, extract cash flows, sell assets (real estate), let the underlying enterprise die"
   );
   addRelationship(
     "Destruction of local journalism via hedge fund acquisition",
     "Hospital consolidation and local monopoly pricing",
-    "enables", 0.6, "one_way",
+    "enables", "contextual", "one_way",
     "Without local reporters covering hospital mergers, community health impacts, and pricing practices, consolidation proceeds without public scrutiny or political resistance"
   );
 
@@ -550,19 +550,19 @@ function seedDemo() {
   addRelationship(
     "Industrialized misinformation",
     "Collapse of shared information commons",
-    "amplifies", 0.8, "mutual",
+    "amplifies", "contributing", "mutual",
     "AI-generated misinformation floods the information space while the collapse of shared information commons means there is no authoritative counterweight — each amplifies the other"
   );
   addRelationship(
     "Deepfakes and synthetic identity fraud",
     "Industrialized misinformation",
-    "enables", 0.85, "one_way",
+    "enables", "direct", "one_way",
     "Deepfake technology provides the production tools for industrialized misinformation — synthetic video and audio that is increasingly indistinguishable from reality"
   );
   addRelationship(
     "Epistemic pollution at scale",
     "Student deskilling and educational hollowing",
-    "amplifies", 0.6, "one_way",
+    "amplifies", "contextual", "one_way",
     "When the information environment is polluted with AI-generated plausible-but-unverified content, students cannot learn to distinguish good from bad sources because the signals are degraded"
   );
 

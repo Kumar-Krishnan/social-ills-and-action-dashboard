@@ -194,7 +194,7 @@ export const issueRelationships = sqliteTable("issue_relationships", {
     .notNull()
     .references(() => issues.id, { onDelete: "cascade" }),
   relationshipType: text("relationship_type").notNull(), // causes, amplifies, mitigates, blocks, enables, co_occurs
-  strength: real("strength"), // 0-1
+  directness: text("directness").notNull().default("contributing"), // direct, contributing, contextual
   direction: text("direction").notNull().default("one_way"), // one_way, mutual
   evidence: text("evidence"),
   source: text("source").notNull().default("seed"), // seed, community, editorial

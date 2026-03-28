@@ -14,12 +14,14 @@ import {
   LEGISLATION_STATUS_COLORS, LEGISLATION_STATUS_LABELS,
   LEGISLATION_DIRECTION_COLORS, LEGISLATION_DIRECTION_LABELS,
   RELATIONSHIP_TYPE_LABELS, RELATIONSHIP_TYPE_COLORS,
+  DIRECTNESS_LABELS, DIRECTNESS_DESCRIPTIONS, DIRECTNESS_COLORS,
   EVIDENCE_TYPE_LABELS, ACTOR_ROLE_LABELS, ACTOR_ROLE_COLORS,
   ACTOR_TYPE_LABELS, GEOGRAPHY_SCOPE_LABELS,
   STATUS_LABELS,
 } from "@/lib/constants";
 import { LearnMore } from "@/components/issues/learn-more";
 import type { Legislation, UnifiedLegislation, IssueRelationship, Evidence as EvidenceType, ActorLink } from "@/lib/types";
+import { RelationshipRow } from "@/components/issues/relationship-row";
 
 export async function generateMetadata({
   params,
@@ -162,53 +164,11 @@ function UnifiedLegislationSection({ items }: { items: UnifiedLegislation[] }) {
 function CausalGraphSection({
   upstreamCauses,
   downstreamEffects,
-  issueName,
 }: {
   upstreamCauses: IssueRelationship[];
   downstreamEffects: IssueRelationship[];
-  issueName: string;
 }) {
   if (upstreamCauses.length === 0 && downstreamEffects.length === 0) return null;
-
-  function RelationshipRow({ rel, direction }: { rel: IssueRelationship; direction: "upstream" | "downstream" }) {
-    return (
-      <div className="py-3 border-b border-border/30 last:border-0">
-        <div className="flex items-center gap-2 flex-wrap">
-          {direction === "upstream" ? (
-            <>
-              <Link href={`/issues/${rel.relatedIssue.slug}`} className="font-medium text-sm hover:text-primary transition-colors">
-                {rel.relatedIssue.name}
-              </Link>
-              <span className={`text-xs px-1.5 py-0.5 rounded ${RELATIONSHIP_TYPE_COLORS[rel.relationshipType]}`}>
-                {RELATIONSHIP_TYPE_LABELS[rel.relationshipType]}
-              </span>
-              <ArrowRight className="h-3 w-3 text-muted-foreground" />
-              <span className="text-xs text-muted-foreground italic">this issue</span>
-            </>
-          ) : (
-            <>
-              <span className="text-xs text-muted-foreground italic">this issue</span>
-              <ArrowRight className="h-3 w-3 text-muted-foreground" />
-              <span className={`text-xs px-1.5 py-0.5 rounded ${RELATIONSHIP_TYPE_COLORS[rel.relationshipType]}`}>
-                {RELATIONSHIP_TYPE_LABELS[rel.relationshipType]}
-              </span>
-              <Link href={`/issues/${rel.relatedIssue.slug}`} className="font-medium text-sm hover:text-primary transition-colors">
-                {rel.relatedIssue.name}
-              </Link>
-            </>
-          )}
-          {rel.strength && (
-            <span className="text-xs text-muted-foreground ml-auto">
-              strength: {(rel.strength * 100).toFixed(0)}%
-            </span>
-          )}
-        </div>
-        {rel.evidence && (
-          <p className="text-xs text-muted-foreground mt-1.5 leading-relaxed pl-1">{rel.evidence}</p>
-        )}
-      </div>
-    );
-  }
 
   return (
     <section>
@@ -524,7 +484,6 @@ export default async function IssueDetailPage({
           <CausalGraphSection
             upstreamCauses={issue.upstreamCauses!}
             downstreamEffects={issue.downstreamEffects!}
-            issueName={issue.name}
           />
         )}
 

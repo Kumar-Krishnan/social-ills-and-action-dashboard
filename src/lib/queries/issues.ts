@@ -101,14 +101,16 @@ function attachChildRelations(issue: IssueWithRelations): IssueWithRelations {
   // Upstream causes: issues that cause/amplify/enable THIS issue
   const upstreamRows = db.$client
     .prepare(
-      `SELECT ir.id, ir.relationship_type as relationshipType, ir.strength, ir.direction, ir.evidence,
-              i.id as issueId, i.name as issueName, i.slug as issueSlug, i.status as issueStatus
+      `SELECT ir.id, ir.relationship_type as relationshipType, ir.directness, ir.direction, ir.evidence,
+              i.id as issueId, i.name as issueName, i.slug as issueSlug, i.status as issueStatus,
+              (SELECT COUNT(*) FROM evidence e WHERE e.issue_id = i.id) as evidenceCount
        FROM issue_relationships ir
        JOIN issues i ON i.id = ir.source_issue_id
        WHERE ir.target_issue_id = ?
        UNION
-       SELECT ir.id, ir.relationship_type as relationshipType, ir.strength, ir.direction, ir.evidence,
-              i.id as issueId, i.name as issueName, i.slug as issueSlug, i.status as issueStatus
+       SELECT ir.id, ir.relationship_type as relationshipType, ir.directness, ir.direction, ir.evidence,
+              i.id as issueId, i.name as issueName, i.slug as issueSlug, i.status as issueStatus,
+              (SELECT COUNT(*) FROM evidence e WHERE e.issue_id = i.id) as evidenceCount
        FROM issue_relationships ir
        JOIN issues i ON i.id = ir.target_issue_id
        WHERE ir.source_issue_id = ? AND ir.direction = 'mutual'`
@@ -118,9 +120,10 @@ function attachChildRelations(issue: IssueWithRelations): IssueWithRelations {
   const upstreamCauses: IssueRelationship[] = upstreamRows.map((r) => ({
     id: r.id as number,
     relationshipType: r.relationshipType as IssueRelationship["relationshipType"],
-    strength: (r.strength as number) ?? null,
+    directness: (r.directness as IssueRelationship["directness"]) || "contributing",
     direction: r.direction as "one_way" | "mutual",
     evidence: (r.evidence as string) ?? null,
+    relatedEvidenceCount: (r.evidenceCount as number) || 0,
     relatedIssue: {
       id: r.issueId as number,
       name: r.issueName as string,
@@ -132,8 +135,9 @@ function attachChildRelations(issue: IssueWithRelations): IssueWithRelations {
   // Downstream effects: issues that THIS issue causes/amplifies/enables
   const downstreamRows = db.$client
     .prepare(
-      `SELECT ir.id, ir.relationship_type as relationshipType, ir.strength, ir.direction, ir.evidence,
-              i.id as issueId, i.name as issueName, i.slug as issueSlug, i.status as issueStatus
+      `SELECT ir.id, ir.relationship_type as relationshipType, ir.directness, ir.direction, ir.evidence,
+              i.id as issueId, i.name as issueName, i.slug as issueSlug, i.status as issueStatus,
+              (SELECT COUNT(*) FROM evidence e WHERE e.issue_id = i.id) as evidenceCount
        FROM issue_relationships ir
        JOIN issues i ON i.id = ir.target_issue_id
        WHERE ir.source_issue_id = ?`
@@ -143,9 +147,10 @@ function attachChildRelations(issue: IssueWithRelations): IssueWithRelations {
   const downstreamEffects: IssueRelationship[] = downstreamRows.map((r) => ({
     id: r.id as number,
     relationshipType: r.relationshipType as IssueRelationship["relationshipType"],
-    strength: (r.strength as number) ?? null,
+    directness: (r.directness as IssueRelationship["directness"]) || "contributing",
     direction: r.direction as "one_way" | "mutual",
     evidence: (r.evidence as string) ?? null,
+    relatedEvidenceCount: (r.evidenceCount as number) || 0,
     relatedIssue: {
       id: r.issueId as number,
       name: r.issueName as string,

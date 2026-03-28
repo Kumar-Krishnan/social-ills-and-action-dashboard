@@ -19,22 +19,61 @@ function slugify(text: string): string {
     .slice(0, 80);
 }
 
-interface JsonItem {
-  rank: number;
+// ── Types matching the canonical data file schema ──
+
+interface Reformer {
+  name: string;
+  description: string;
+  url?: string | null;
+}
+
+interface Legislation {
+  name: string;
+  description: string;
+  direction: "positive" | "negative" | "mixed";
+  jurisdiction: string;
+  status?: string;
+  year?: number | null;
+  url?: string | null;
+}
+
+interface StructurallyIncentivized {
+  name: string;
+  description: string;
+  mechanism: string;
+  url?: string | null;
+}
+
+interface ReformInOtherSystems {
+  name: string;
+  description: string;
+  country: string;
+  outcome: string;
+  year?: number | null;
+  url?: string | null;
+}
+
+interface Issue {
   name: string;
   description: string;
   status: string;
-  phase?: string;
-  confidence?: string;
+  phase: string;
+  confidence: string;
+  reformers?: Reformer[];
+  legislation?: Legislation[];
+  structurally_incentivized?: StructurallyIncentivized[];
+  reform_in_other_systems?: ReformInOtherSystems[];
 }
 
-interface JsonFile {
-  title: string;
-  items: JsonItem[];
+interface DataFile {
+  category: string;
+  slug: string;
   structural_observation: string;
+  issues: Issue[];
 }
 
-// Tag keyword detection mapping
+// ── Tag detection ──
+
 const TAG_KEYWORDS: Record<string, string[]> = {
   privacy: ["surveillance", "privacy", "tracking", "data", "monitoring", "encrypt"],
   labor: ["labor", "worker", "job", "employ", "displacement", "work", "wage", "union", "bargain", "offsh"],
@@ -58,74 +97,67 @@ const TAG_KEYWORDS: Record<string, string[]> = {
 function detectTags(name: string, description: string): string[] {
   const text = `${name} ${description}`.toLowerCase();
   const matched: string[] = [];
-
   for (const [tag, keywords] of Object.entries(TAG_KEYWORDS)) {
     if (keywords.some((kw) => text.includes(kw))) {
       matched.push(tag);
     }
   }
-
   return matched;
 }
 
-const DATA_FILES = [
-  {
-    file: "ai_social_ills.json",
-    categoryName: "Artificial Intelligence",
-    categorySlug: "artificial-intelligence",
-  },
-  {
-    file: "quantum_computing_social_ills.json",
-    categoryName: "Quantum Computing",
-    categorySlug: "quantum-computing",
-  },
-  {
-    file: "smartphones_social_media_ills.json",
-    categoryName: "Smartphones & Social Media",
-    categorySlug: "smartphones-social-media",
-  },
-  {
-    file: "healthcare_profiteering.json",
-    categoryName: "Healthcare System",
-    categorySlug: "healthcare-system",
-  },
-  {
-    file: "financilization_and_private_equity.json",
-    categoryName: "Private Equity & Financialization",
-    categorySlug: "private-equity-financialization",
-  },
-  {
-    file: "immigration.json",
-    categoryName: "Immigration",
-    categorySlug: "immigration",
-  },
-  {
-    file: "media_ecosyste_decay.json",
-    categoryName: "Media Ecosystem Decay",
-    categorySlug: "media-ecosystem-decay",
-  },
-  {
-    file: "off-shoring.json",
-    categoryName: "Offshoring",
-    categorySlug: "offshoring",
-  },
-];
+// ── Prepared statements for child relation inserts ──
+
+const insertReformer = sqlite.prepare(
+  `INSERT INTO reformers (issue_id, name, description, url, created_at) VALUES (?, ?, ?, ?, ?)`
+);
+
+const insertLegislation = sqlite.prepare(
+  `INSERT INTO legislation (issue_id, name, description, direction, jurisdiction, status, year, url, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`
+);
+
+const insertStructurallyIncentivized = sqlite.prepare(
+  `INSERT INTO structurally_incentivized (issue_id, name, description, mechanism, url, created_at) VALUES (?, ?, ?, ?, ?, ?)`
+);
+
+const insertReformInOtherSystems = sqlite.prepare(
+  `INSERT INTO reform_in_other_systems (issue_id, name, description, country, outcome, year, url, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+);
+
+// ── Main seed function ──
 
 function seed() {
-  console.log("Seeding database...");
+  console.log("Seeding database...\n");
 
   const dataDir = path.join(__dirname, "..", "data");
 
-  // Create all tags first
+  // Discover all data files (exclude SCHEMA.md and non-JSON)
+  const dataFiles = fs.readdirSync(dataDir)
+    .filter((f) => f.endsWith(".json"))
+    .map((f) => path.join(dataDir, f));
+
+  if (dataFiles.length === 0) {
+    console.error("No data files found in", dataDir);
+    process.exit(1);
+  }
+
+  // Parse all files
+  const allData: DataFile[] = dataFiles.map((f) => {
+    const raw = fs.readFileSync(f, "utf-8");
+    const data = JSON.parse(raw) as DataFile;
+    if (!data.category || !data.slug || !data.issues) {
+      console.error(`Invalid data file: ${path.basename(f)} — missing category, slug, or issues`);
+      process.exit(1);
+    }
+    return data;
+  });
+
+  // 1. Create tags
   const allTagNames = new Set<string>();
   const tagMap = new Map<string, number>();
 
-  for (const { file } of DATA_FILES) {
-    const raw = fs.readFileSync(path.join(dataDir, file), "utf-8");
-    const data: JsonFile = JSON.parse(raw);
-    for (const item of data.items) {
-      const tags = detectTags(item.name, item.description);
-      tags.forEach((t) => allTagNames.add(t));
+  for (const data of allData) {
+    for (const issue of data.issues) {
+      detectTags(issue.name, issue.description).forEach((t) => allTagNames.add(t));
     }
   }
 
@@ -137,42 +169,39 @@ function seed() {
       .get();
     tagMap.set(tagName, result.id);
   }
-  console.log(`  Created ${tagMap.size} tags`);
+  console.log(`Tags: ${tagMap.size}`);
 
-  // Process each data file
+  // 2. Process each category file
   let totalIssues = 0;
+  let totalChildren = 0;
+  const now = new Date().toISOString();
 
-  for (const { file, categoryName, categorySlug } of DATA_FILES) {
-    const raw = fs.readFileSync(path.join(dataDir, file), "utf-8");
-    const data: JsonFile = JSON.parse(raw);
-
+  for (const data of allData) {
     // Create category
     const category = db
       .insert(schema.categories)
       .values({
-        name: categoryName,
-        slug: categorySlug,
+        name: data.category,
+        slug: data.slug,
         description: data.structural_observation,
       })
       .returning()
       .get();
 
-    console.log(`  Category: ${categoryName} (id=${category.id})`);
+    let fileChildren = 0;
 
-    for (const item of data.items) {
-      const issueSlug = slugify(item.name);
-
+    for (const item of data.issues) {
       // Insert issue
       const issue = db
         .insert(schema.issues)
         .values({
           name: item.name,
-          slug: issueSlug,
+          slug: slugify(item.name),
           description: item.description,
           status: item.status,
-          phase: item.phase || null,
-          confidence: item.confidence || null,
-          originalRank: item.rank,
+          phase: item.phase,
+          confidence: item.confidence,
+          originalRank: data.issues.indexOf(item) + 1,
         })
         .returning()
         .get();
@@ -183,8 +212,7 @@ function seed() {
         .run();
 
       // Detect and link tags
-      const detectedTags = detectTags(item.name, item.description);
-      for (const tagName of detectedTags) {
+      for (const tagName of detectTags(item.name, item.description)) {
         const tagId = tagMap.get(tagName);
         if (tagId) {
           db.insert(schema.issueTags)
@@ -193,24 +221,57 @@ function seed() {
         }
       }
 
-      // Create ranking row with all dimensions unscored
+      // Create ranking row (unscored)
       db.insert(schema.rankings)
-        .values({
-          issueId: issue.id,
-          severity: null,
-          urgency: null,
-          tractability: null,
-          populationAffected: null,
-          compositeScore: null,
-          source: "seed",
-        })
+        .values({ issueId: issue.id, source: "seed" })
         .run();
+
+      // ── Insert child relations ──
+
+      if (item.reformers?.length) {
+        for (const r of item.reformers) {
+          insertReformer.run(issue.id, r.name, r.description, r.url || null, now);
+        }
+        fileChildren += item.reformers.length;
+      }
+
+      if (item.legislation?.length) {
+        for (const l of item.legislation) {
+          insertLegislation.run(
+            issue.id, l.name, l.description, l.direction,
+            l.jurisdiction, l.status || "passed", l.year || null, l.url || null, now
+          );
+        }
+        fileChildren += item.legislation.length;
+      }
+
+      if (item.structurally_incentivized?.length) {
+        for (const s of item.structurally_incentivized) {
+          insertStructurallyIncentivized.run(
+            issue.id, s.name, s.description, s.mechanism, s.url || null, now
+          );
+        }
+        fileChildren += item.structurally_incentivized.length;
+      }
+
+      if (item.reform_in_other_systems?.length) {
+        for (const r of item.reform_in_other_systems) {
+          insertReformInOtherSystems.run(
+            issue.id, r.name, r.description, r.country, r.outcome, r.year || null, r.url || null, now
+          );
+        }
+        fileChildren += item.reform_in_other_systems.length;
+      }
 
       totalIssues++;
     }
+
+    totalChildren += fileChildren;
+    const childStr = fileChildren > 0 ? ` (${fileChildren} child records)` : "";
+    console.log(`  ${data.category}: ${data.issues.length} issues${childStr}`);
   }
 
-  console.log(`  Total issues: ${totalIssues}`);
+  console.log(`\nTotal: ${totalIssues} issues, ${totalChildren} child records`);
   console.log("Seed complete!");
 }
 

@@ -27,7 +27,7 @@ CREATE TABLE `issue_relationships` (
 	`source_issue_id` integer NOT NULL,
 	`target_issue_id` integer NOT NULL,
 	`relationship_type` text NOT NULL,
-	`strength` real,
+	`directness` text DEFAULT 'contributing' NOT NULL,
 	`direction` text DEFAULT 'one_way' NOT NULL,
 	`evidence` text,
 	`source` text DEFAULT 'seed' NOT NULL,

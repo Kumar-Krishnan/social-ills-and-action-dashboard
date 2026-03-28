@@ -41,9 +41,11 @@ export interface ReformInOtherSystems {
 export interface IssueRelationship {
   id: number;
   relationshipType: "causes" | "amplifies" | "mitigates" | "blocks" | "enables" | "co_occurs";
-  strength: number | null;
+  directness: "direct" | "contributing" | "contextual";
   direction: "one_way" | "mutual";
   evidence: string | null;
+  /** Number of evidence citations attached to the related issue */
+  relatedEvidenceCount: number;
   relatedIssue: {
     id: number;
     name: string;
