@@ -23,27 +23,27 @@ Each issue needs a deep-dive mapping all causal relationships (causes, amplifies
 
 ## TODO — Private Equity & Financialization
 - [ ] [11] Leveraged buyout debt loading and productive asset stripping
-- [ ] [12] Destruction of healthcare through PE acquisition
+- [x] [12] Destruction of healthcare through PE acquisition — 6 relationships
 - [ ] [13] Housing financialization and the landlord-ification of America
-- [ ] [14] Private equity roll-ups creating stealth monopolies
-- [ ] [15] Systematic wage and benefit suppression post-acquisition
+- [x] [14] Private equity roll-ups creating stealth monopolies — 4 relationships
+- [x] [15] Systematic wage and benefit suppression post-acquisition — 4 relationships
 - [ ] [16] Stock buyback epidemic and death of corporate reinvestment
-- [ ] [17] Financialization of higher education and the student debt crisis
+- [x] [17] Financialization of higher education and the student debt crisis — 4 relationships
 - [ ] [18] Wealth inequality acceleration
-- [ ] [19] Carried interest loophole and tax system corruption
-- [ ] [20] Commodification of essential services
+- [x] [19] Carried interest loophole and tax system corruption — 3 relationships
+- [x] [20] Commodification of essential services — 5 relationships
 
 ## TODO — Healthcare System
-- [ ] [21] Medical debt as the leading cause of personal bankruptcy
-- [ ] [22] Pharmaceutical pricing as unregulated extraction
-- [ ] [23] Insurance as bureaucratic extraction layer
-- [ ] [24] Hospital consolidation and local monopoly pricing
-- [ ] [25] Rural healthcare collapse
-- [ ] [26] Maternal mortality crisis
-- [ ] [27] Mental health system collapse
+- [x] [21] Medical debt as the leading cause of personal bankruptcy — 7 relationships
+- [x] [22] Pharmaceutical pricing as unregulated extraction — 3 relationships
+- [x] [23] Insurance as bureaucratic extraction layer — 5 relationships
+- [x] [24] Hospital consolidation and local monopoly pricing — 4 relationships
+- [x] [25] Rural healthcare collapse — 4 relationships
+- [x] [26] Maternal mortality crisis — 4 relationships
+- [x] [27] Mental health system collapse — 4 relationships
 - [ ] [28] The opioid crisis as corporate-manufactured epidemic
-- [ ] [29] Provider burnout and workforce crisis
-- [ ] [30] Prior authorization as care rationing by bureaucratic attrition
+- [x] [29] Provider burnout and workforce crisis — 3 relationships
+- [x] [30] Prior authorization as care rationing by bureaucratic attrition — 3 relationships
 
 ## TODO — Immigration
 - [ ] [31] Wage suppression in low-skill labor markets
