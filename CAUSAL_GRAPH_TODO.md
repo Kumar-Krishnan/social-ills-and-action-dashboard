@@ -46,16 +46,16 @@ Each issue needs a deep-dive mapping all causal relationships (causes, amplifies
 - [x] [30] Prior authorization as care rationing by bureaucratic attrition — 3 relationships
 
 ## TODO — Immigration
-- [ ] [31] Wage suppression in low-skill labor markets
-- [ ] [32] Exploitation of undocumented workers as a permanent underclass
-- [ ] [33] Housing affordability pressure in receiving communities
-- [ ] [34] Fiscal burden on local services without federal compensation
-- [ ] [35] Erosion of social trust and community cohesion
-- [ ] [36] Parallel society formation and integration failure
-- [ ] [37] Suppression of honest discourse through stigmatization
-- [ ] [38] Political exploitation by both parties
-- [ ] [39] Human trafficking and cartel empowerment
-- [ ] [40] Creation of a two-tier labor market
+- [x] [31] Wage suppression in low-skill labor markets — 5 relationships
+- [x] [32] Exploitation of undocumented workers as a permanent underclass — 4 relationships
+- [x] [33] Housing affordability pressure in receiving communities — 4 relationships
+- [x] [34] Fiscal burden on local services without federal compensation — 4 relationships
+- [x] [35] Erosion of social trust and community cohesion — 4 relationships
+- [x] [36] Parallel society formation and integration failure — 4 relationships
+- [x] [37] Suppression of honest discourse through stigmatization — 4 relationships
+- [x] [38] Political exploitation by both parties — 4 relationships
+- [x] [39] Human trafficking and cartel empowerment — 4 relationships
+- [x] [40] Creation of a two-tier labor market — 3 relationships
 
 ## TODO — Media Ecosystem Decay
 - [ ] [41] Consolidation into a handful of corporate gatekeepers
