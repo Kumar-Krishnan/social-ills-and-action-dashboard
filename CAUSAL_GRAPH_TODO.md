@@ -6,17 +6,20 @@ Each issue needs a deep-dive mapping all causal relationships (causes, amplifies
 
 - [x] **[51] Deindustrialization of the American heartland** (Offshoring) — 28 relationships mapped across 7 categories
 - [x] **[11] Leveraged buyout debt loading and productive asset stripping** (PE/Financialization) — 23 relationships mapped across 7 categories
+- [x] **[28] The opioid crisis as corporate-manufactured epidemic** (Healthcare) — 20 relationships mapped across 6 categories
+- [x] **[18] Wealth inequality acceleration** (PE/Financialization) — 20 relationships mapped across 7 categories
+- [x] **[76] Political polarization and tribal epistemology** (Smartphones & Social Media) — 17 relationships mapped across 6 categories
 
 ## TODO — Offshoring
-- [ ] [52] Deaths of despair epidemic
-- [ ] [53] Collapse of the blue-collar middle class pathway
-- [ ] [54] Union destruction and labor power erosion
-- [ ] [55] Supply chain fragility exposed
-- [ ] [56] Labor exploitation in receiving countries
-- [ ] [57] Skill atrophy and loss of manufacturing knowledge
-- [ ] [58] IT and software development wage suppression
-- [ ] [59] Professional career ladder destruction
-- [ ] [60] Political radicalization and populist backlash
+- [x] [52] Deaths of despair epidemic — 8 relationships
+- [x] [53] Collapse of the blue-collar middle class pathway — 6 relationships
+- [x] [54] Union destruction and labor power erosion — 6 relationships
+- [x] [55] Supply chain fragility exposed — 5 relationships
+- [x] [56] Labor exploitation in receiving countries — 4 relationships
+- [x] [57] Skill atrophy and loss of manufacturing knowledge — 4 relationships
+- [x] [58] IT and software development wage suppression — 4 relationships
+- [x] [59] Professional career ladder destruction — 4 relationships
+- [x] [60] Political radicalization and populist backlash — 5 relationships
 
 ## TODO — Private Equity & Financialization
 - [ ] [11] Leveraged buyout debt loading and productive asset stripping
