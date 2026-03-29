@@ -58,52 +58,52 @@ Each issue needs a deep-dive mapping all causal relationships (causes, amplifies
 - [x] [40] Creation of a two-tier labor market — 3 relationships
 
 ## TODO — Media Ecosystem Decay
-- [ ] [41] Consolidation into a handful of corporate gatekeepers
-- [ ] [42] The advertising model's corruption of editorial judgment
-- [ ] [43] Local news collapse and the creation of news deserts
-- [ ] [44] The paywall paradox and information class stratification
-- [ ] [45] Collapse of shared information commons
-- [ ] [46] Cable news as tribal identity product
-- [ ] [47] Trust collapse as self-reinforcing cycle
-- [ ] [48] Media as instrument of political warfare rather than public accountability
-- [ ] [49] Manufactured outrage as business model
-- [ ] [50] Algorithmic amplification of media dysfunction
+- [x] [41] Consolidation into a handful of corporate gatekeepers — 5 relationships
+- [x] [42] The advertising model's corruption of editorial judgment — 5 relationships
+- [x] [43] Local news collapse and the creation of news deserts — 2 relationships
+- [x] [44] The paywall paradox and information class stratification — 2 relationships
+- [x] [45] Collapse of shared information commons — (heavily connected upstream)
+- [x] [46] Cable news as tribal identity product — (heavily connected upstream)
+- [x] [47] Trust collapse as self-reinforcing cycle — 1 relationship
+- [x] [48] Media as instrument of political warfare — 2 relationships
+- [x] [49] Manufactured outrage as business model — (heavily connected upstream)
+- [x] [50] Algorithmic amplification of media dysfunction — 3 relationships
 
 ## TODO — Artificial Intelligence
-- [ ] [1] Deepfakes and synthetic identity fraud
-- [ ] [2] Industrialized misinformation
-- [ ] [3] Hollowing out of creative labor markets
-- [ ] [4] Epistemic pollution at scale
-- [ ] [5] Algorithmic bias laundering
-- [ ] [6] Automated surveillance and social control
-- [ ] [7] Concentration of power in fewer hands
-- [ ] [8] Mass white-collar displacement without transition infrastructure
-- [ ] [9] Automated persuasion and hyper-personalized manipulation
-- [ ] [10] Autonomous weapons and lowering of violence thresholds
+- [x] [1] Deepfakes and synthetic identity fraud — 2 relationships
+- [x] [2] Industrialized misinformation — 2 relationships
+- [x] [3] Hollowing out of creative labor markets — 2 relationships
+- [x] [4] Epistemic pollution at scale — 1 relationship
+- [x] [5] Algorithmic bias laundering — 2 relationships (+ 1 from maternal mortality)
+- [x] [6] Automated surveillance and social control — 2 relationships
+- [x] [7] Concentration of power in fewer hands — 2 relationships
+- [x] [8] Mass white-collar displacement — 2 relationships
+- [x] [9] Automated persuasion — 2 relationships
+- [x] [10] Autonomous weapons — 2 relationships
 
 ## TODO — Smartphones & Social Media
-- [ ] [71] Youth mental health crisis
-- [ ] [72] Attention fragmentation
-- [ ] [73] Cyberbullying and online harassment
-- [ ] [74] Child sexual exploitation and predatory grooming
-- [ ] [75] Addiction by design
-- [ ] [76] Political polarization and tribal epistemology
-- [ ] [77] Misinformation and epistemic collapse
-- [ ] [78] Loneliness epidemic
-- [ ] [79] Surveillance capitalism
-- [ ] [80] Radicalization pipelines
+- [x] [71] Youth mental health crisis — 2 relationships
+- [x] [72] Attention fragmentation — 1 relationship
+- [x] [73] Cyberbullying and online harassment — 1 relationship
+- [x] [74] Child sexual exploitation — 1 relationship
+- [x] [75] Addiction by design — 3 relationships
+- [x] [76] Political polarization and tribal epistemology — (heavily connected, 17 prior)
+- [x] [77] Misinformation and epistemic collapse — 1 relationship
+- [x] [78] Loneliness epidemic — (heavily connected upstream)
+- [x] [79] Surveillance capitalism — 3 relationships
+- [x] [80] Radicalization pipelines — 2 relationships
 
 ## TODO — Quantum Computing
-- [ ] [61] Cryptographic collapse — the Q-Day problem
-- [ ] [62] Harvest now, decrypt later attacks already underway
-- [ ] [63] Catastrophic exposure of historical secrets
-- [ ] [64] Financial system vulnerability
-- [ ] [65] Asymmetric national advantage and geopolitical destabilization
-- [ ] [66] Digital identity infrastructure collapse
-- [ ] [67] Widening power asymmetry between states and citizens
-- [ ] [68] Pharmaceutical and biotech acceleration without ethical infrastructure
-- [ ] [69] Concentration of quantum capability as ultimate moat
-- [ ] [70] Post-quantum transition chaos and legacy system failure
+- [x] [61] Cryptographic collapse — the Q-Day problem — 4 relationships
+- [x] [62] Harvest now, decrypt later — 2 relationships
+- [x] [63] Catastrophic exposure of historical secrets — (caused by 61, 62)
+- [x] [64] Financial system vulnerability — 1 relationship
+- [x] [65] Asymmetric national advantage — 1 relationship
+- [x] [66] Digital identity infrastructure collapse — (caused by 61)
+- [x] [67] Widening state-citizen power asymmetry — 1 relationship
+- [x] [68] Pharma/biotech without ethics — 1 relationship
+- [x] [69] Concentration of quantum capability — 1 relationship
+- [x] [70] Post-quantum transition chaos — 2 relationships
 
 ## Notes
 
